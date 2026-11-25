@@ -152,7 +152,12 @@ Dari output yang muncul, terdapat tiga temuan utama:
     aircrack-ng otomatis menghentikan proses sebelum sempat mencocokkan
     kandidat kata sandi dari wordlist-k9.txt.
 
-    Empat langkah (4-Way Handshake) WPA2:Message 1 (AP $\rightarrow$ Client): AP mengirimkan nilai acak ANonce ke Client.Message 2 (Client $\rightarrow$ AP): Client membuat SNonce, menurunkan kunci sesi PTK, lalu mengirim SNonce beserta MIC ke AP.Message 3 (AP $\rightarrow$ Client): AP memverifikasi MIC, lalu mengirimkan GTK terenkripsi beserta MIC ke Client.Message 4 (Client $\rightarrow$ AP): Client mengirim konfirmasi (ACK) bahwa kunci sesi telah terpasang dan komunikasi terenkripsi siap dimulai.
+    **Empat langkah (4-Way Handshake) WPA2:**
+
+1. **Message 1 (AP → Client):** AP mengirimkan nilai acak **ANonce** ke Client.
+2. **Message 2 (Client → AP):** Client membuat **SNonce**, menurunkan kunci sesi **PTK**, lalu mengirim **SNonce** beserta **MIC** ke AP.
+3. **Message 3 (AP → Client):** AP memverifikasi MIC, lalu mengirimkan **GTK** terenkripsi beserta **MIC** ke Client.
+4. **Message 4 (Client → AP):** Client mengirim konfirmasi (**ACK**) bahwa kunci sesi telah terpasang dan komunikasi terenkripsi siap dimulai.
 
 ## Tugas 5 (Pertemuan 5) — ICMP dengan Scapy
 
@@ -267,7 +272,7 @@ seperti sebelumnya.
 Log diekspor dan dianalisis oleh analisis_dns.py. Hasilnya mencatat
 total **2 query** untuk domain induk exfil.lab — salah satunya adalah
 label sepanjang **44 karakter**
-(3234353532303131333531323435353230313133333531), hasil encode dari NIM
+(3234353532303131333531323435353230313133531), hasil encode dari NIM
 yang digandakan dua kali. Karena panjangnya melebihi ambang 30 karakter
 dan hanya berisi karakter hex, skrip berhasil menandainya sebagai
 **query mencurigakan** — ini bukti bahwa mekanisme deteksi DNS
