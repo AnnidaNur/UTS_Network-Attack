@@ -88,6 +88,8 @@ Certificate Authority (CA) pihak ketiga. Masa berlaku sertifikat
 tercatat dari 21 November 2026 (notBefore) hingga 21 Desember 2026
 (notAfter), sesuai dengan parameter -days 30 yang diberikan.
 
+Perbedaan sertifikat self-signed dan CA: Sertifikat self-signed ditandatangani sendiri oleh pembuatnya menggunakan kunci privat miliknya sehingga tidak diverifikasi oleh pihak ketiga tepercaya dan memicu peringatan keamanan pada peramban. Sebaliknya, sertifikat yang ditandatangani Certificate Authority (CA) resmi telah melalui verifikasi identitas dan dipercaya secara otomatis melalui rantai kepercayaan (chain of trust).
+
 ## Tugas 3 (Pertemuan 3) — Spoofing ARP
 
 ![](ss/image7.png)
@@ -122,6 +124,8 @@ Entri statis ini terkunci dan tidak bisa lagi ditimpa oleh paket ARP
 palsu dari penyerang, membuktikan mitigasi berhasil memulihkan
 integritas tabel ARP korban.
 
+Mitigasi selain static ARP: Mengaktifkan Dynamic ARP Inspection (DAI) pada managed switch yang dipadukan dengan DHCP Snooping agar switch memvalidasi setiap paket ARP terhadap tabel pengikatan IP-MAC dan membuang paket ARP palsu.
+
 ## Tugas 4 (Pertemuan 4) — Analisis Handshake WPA2
 
 ![](ss/image10.png)
@@ -147,6 +151,8 @@ Dari output yang muncul, terdapat tiga temuan utama:
     Access Point (BSSID) maupun paket *handshake* di dalam file capture,
     aircrack-ng otomatis menghentikan proses sebelum sempat mencocokkan
     kandidat kata sandi dari wordlist-k9.txt.
+
+    Empat langkah (4-Way Handshake) WPA2:Message 1 (AP $\rightarrow$ Client): AP mengirimkan nilai acak ANonce ke Client.Message 2 (Client $\rightarrow$ AP): Client membuat SNonce, menurunkan kunci sesi PTK, lalu mengirim SNonce beserta MIC ke AP.Message 3 (AP $\rightarrow$ Client): AP memverifikasi MIC, lalu mengirimkan GTK terenkripsi beserta MIC ke Client.Message 4 (Client $\rightarrow$ AP): Client mengirim konfirmasi (ACK) bahwa kunci sesi telah terpasang dan komunikasi terenkripsi siap dimulai.
 
 ## Tugas 5 (Pertemuan 5) — ICMP dengan Scapy
 
@@ -235,6 +241,8 @@ Perintah down -v menghentikan dan menghapus container target, attacker,
 beserta network k9_lab yang dibuat compose untuk Tugas 6, membersihkan
 environment setelah pengujian selesai.
 
+Mitigasi SYN Flood: Mengaktifkan SYN Cookies (net.ipv4.tcp_syncookies = 1), yaitu menyandikan parameter koneksi ke dalam Initial Sequence Number (ISN) paket SYN-ACK sehingga server tidak perlu mengalokasikan memori backlog queue sebelum klien membalas dengan paket ACK yang sah.
+
 ## Tugas 7 (Pertemuan 7) — DNS Exfiltration
 
 ![](ss/image16.png)
@@ -278,3 +286,5 @@ bisa direkonstruksi utuh kembali oleh pihak penerima.
 Perintah down -v menghentikan dan menghapus container k9-dns-1,
 k9-attacker-1, beserta network k9_lab, membersihkan environment setelah
 pengujian Tugas 7 selesai.
+
+Mengapa sulit diblokir dan indikator deteksinya: DNS exfiltration sulit diblokir firewall biasa karena trafik DNS (port 53) merupakan layanan esensial yang hampir selalu diizinkan keluar, dan firewall konvensional hanya memeriksa header tanpa menganalisis isi label subdomain. Indikator deteksinya adalah kemunculan label subdomain yang sangat panjang (> 30 karakter) dengan pola acak/heksadesimal.
