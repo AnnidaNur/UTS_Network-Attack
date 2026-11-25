@@ -1,13 +1,13 @@
 # Ujian Tengah Semester — Keamanan Jaringan
 ## Praktik Infrastruktur & Network Attacks
 
-**Nama:** Annida Nur Zahra
-**NIM:** 24552011351
-**Dosen Pengampu:** Yasti Aisyah Primianjani, S.Kom., M.S.F.
+**Nama:** Annida Nur Zahra  
+**NIM:** 24552011351  
+**Dosen Pengampu:** Yasti Aisyah Primianjani, S.Kom., M.S.F.  
 
-**Perhitungan penentuan kasus:**
-Jumlah digit NIM 24552011351 = 2+4+5+5+2+0+1+1+3+5+1 = **29**
-Sisa bagi 10 = 29 mod 10 = **9**
+**Perhitungan penentuan kasus:**  
+Jumlah digit NIM 24552011351 = 2+4+5+5+2+0+1+1+3+5+1 = **29**  
+Sisa bagi 10 = 29 mod 10 = **9**  
 **Kasus yang dikerjakan: Kasus 9**
 
 ---
@@ -88,7 +88,7 @@ Certificate Authority (CA) pihak ketiga. Masa berlaku sertifikat
 tercatat dari 21 November 2026 (notBefore) hingga 21 Desember 2026
 (notAfter), sesuai dengan parameter -days 30 yang diberikan.
 
-Perbedaan sertifikat self-signed dan CA: Sertifikat self-signed ditandatangani sendiri oleh pembuatnya menggunakan kunci privat miliknya sehingga tidak diverifikasi oleh pihak ketiga tepercaya dan memicu peringatan keamanan pada peramban. Sebaliknya, sertifikat yang ditandatangani Certificate Authority (CA) resmi telah melalui verifikasi identitas dan dipercaya secara otomatis melalui rantai kepercayaan (chain of trust).
+**Perbedaan sertifikat self-signed dan CA:** Sertifikat self-signed ditandatangani sendiri oleh pembuatnya menggunakan kunci privat miliknya sehingga tidak diverifikasi oleh pihak ketiga tepercaya dan memicu peringatan keamanan pada peramban. Sebaliknya, sertifikat yang ditandatangani Certificate Authority (CA) resmi telah melalui verifikasi identitas dan dipercaya secara otomatis melalui rantai kepercayaan (chain of trust).
 
 ## Tugas 3 (Pertemuan 3) — Spoofing ARP
 
@@ -124,7 +124,7 @@ Entri statis ini terkunci dan tidak bisa lagi ditimpa oleh paket ARP
 palsu dari penyerang, membuktikan mitigasi berhasil memulihkan
 integritas tabel ARP korban.
 
-Mitigasi selain static ARP: Mengaktifkan Dynamic ARP Inspection (DAI) pada managed switch yang dipadukan dengan DHCP Snooping agar switch memvalidasi setiap paket ARP terhadap tabel pengikatan IP-MAC dan membuang paket ARP palsu.
+**Mitigasi selain static ARP:** Mengaktifkan Dynamic ARP Inspection (DAI) pada managed switch yang dipadukan dengan DHCP Snooping agar switch memvalidasi setiap paket ARP terhadap tabel pengikatan IP-MAC dan membuang paket ARP palsu.
 
 ## Tugas 4 (Pertemuan 4) — Analisis Handshake WPA2
 
@@ -152,7 +152,7 @@ Dari output yang muncul, terdapat tiga temuan utama:
     aircrack-ng otomatis menghentikan proses sebelum sempat mencocokkan
     kandidat kata sandi dari wordlist-k9.txt.
 
-    **Empat langkah (4-Way Handshake) WPA2:**
+**Empat langkah (4-Way Handshake) WPA2:**
 
 1. **Message 1 (AP → Client):** AP mengirimkan nilai acak **ANonce** ke Client.
 2. **Message 2 (Client → AP):** Client membuat **SNonce**, menurunkan kunci sesi **PTK**, lalu mengirim **SNonce** beserta **MIC** ke AP.
@@ -191,7 +191,7 @@ semua host di jaringan tersebut akan mengirim Echo Reply secara
 bersamaan ke korban, membanjiri korban dengan trafik balasan dalam
 jumlah besar (efek amplifikasi), meskipun korban sendiri tidak pernah
 mengirim permintaan apa pun — mengeksploitasi kombinasi IP spoofing dan
-broadcast jaringan
+broadcast jaringan.
 
 ## Tugas 6 (Pertemuan 6) — SYN Flood dan Three-Way Handshake
 
@@ -246,7 +246,7 @@ Perintah down -v menghentikan dan menghapus container target, attacker,
 beserta network k9_lab yang dibuat compose untuk Tugas 6, membersihkan
 environment setelah pengujian selesai.
 
-Mitigasi SYN Flood: Mengaktifkan SYN Cookies (net.ipv4.tcp_syncookies = 1), yaitu menyandikan parameter koneksi ke dalam Initial Sequence Number (ISN) paket SYN-ACK sehingga server tidak perlu mengalokasikan memori backlog queue sebelum klien membalas dengan paket ACK yang sah.
+**Mitigasi SYN Flood:** Mengaktifkan SYN Cookies (net.ipv4.tcp_syncookies = 1), yaitu menyandikan parameter koneksi ke dalam Initial Sequence Number (ISN) paket SYN-ACK sehingga server tidak perlu mengalokasikan memori backlog queue sebelum klien membalas dengan paket ACK yang sah.
 
 ## Tugas 7 (Pertemuan 7) — DNS Exfiltration
 
@@ -292,4 +292,4 @@ Perintah down -v menghentikan dan menghapus container k9-dns-1,
 k9-attacker-1, beserta network k9_lab, membersihkan environment setelah
 pengujian Tugas 7 selesai.
 
-Mengapa sulit diblokir dan indikator deteksinya: DNS exfiltration sulit diblokir firewall biasa karena trafik DNS (port 53) merupakan layanan esensial yang hampir selalu diizinkan keluar, dan firewall konvensional hanya memeriksa header tanpa menganalisis isi label subdomain. Indikator deteksinya adalah kemunculan label subdomain yang sangat panjang (> 30 karakter) dengan pola acak/heksadesimal.
+**Mengapa sulit diblokir dan indikator deteksinya:** DNS exfiltration sulit diblokir firewall biasa karena trafik DNS (port 53) merupakan layanan esensial yang hampir selalu diizinkan keluar, dan firewall konvensional hanya memeriksa header tanpa menganalisis isi label subdomain. Indikator deteksinya adalah kemunculan label subdomain yang sangat panjang (> 30 karakter) dengan pola acak/heksadesimal.
